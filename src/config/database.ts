@@ -1,11 +1,14 @@
+import "dotenv/config";
 import mongoose from "mongoose";
 
 export async function connectMongoDb() {
-  const mongoUrl =
-    "mongodb+srv://admin:admin@wallet-cluster.lif8e.mongodb.net/?retryWrites=true&w=majority&appName=wallet-cluster";
-
+  if (!process.env.DATABASE_URL) {
+    throw new Error(
+      "DATABASE_URL não está definido nas variáveis de ambiente."
+    );
+  }
   try {
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(process.env.DATABASE_URL);
     console.log("connect database");
   } catch (error) {
     console.error(error);
