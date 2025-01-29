@@ -1,11 +1,13 @@
 import { authModel } from "../models/auth-model";
+import UserSchema from "../schemas/user";
 
 async function singup(auth: authModel) {
-  return auth;
+  const createAuth = await UserSchema.create(auth);
+  return createAuth;
 }
 
 async function findEmail(email: String) {
-  return true;
+  return false;
 }
 
 export default {
