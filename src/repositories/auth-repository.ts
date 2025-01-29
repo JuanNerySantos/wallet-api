@@ -1,12 +1,16 @@
 import { authModel } from "../models/auth-model";
 import UserSchema from "../schemas/user";
 
-async function singup(auth: authModel) {
+async function singup(auth: authModel): Promise<Object> {
   const createAuth = await UserSchema.create(auth);
   return createAuth;
 }
 
-async function findEmail(email: String) {
+async function findEmail(email: String): Promise<boolean> {
+  const emailExist = await UserSchema.findOne({ email });
+  if (emailExist) {
+    return true;
+  }
   return false;
 }
 
