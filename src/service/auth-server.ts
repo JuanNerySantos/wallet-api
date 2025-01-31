@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { authModel } from "../models/auth-model";
 import authRepository from "../repositories/auth-repository";
+import { badRquest, created } from "./http-response/http-response";
 
 async function singup(auth: authModel) {
   if (Object.keys(auth).length === 0) {
@@ -10,7 +11,7 @@ async function singup(auth: authModel) {
   const emailExist = await authRepository.findEmail(auth.email);
 
   if (emailExist) {
-    throw new Error("Email already exists!");
+    return badRquest({ message: "Email already exists!" });
   }
 
   const hashPassword = bcrypt.hashSync(auth.password, 10);
@@ -20,7 +21,7 @@ async function singup(auth: authModel) {
     password: hashPassword,
   });
 
-  return createAuth;
+  return created(createAuth);
 }
 
 export default { singup };
