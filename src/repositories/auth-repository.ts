@@ -1,7 +1,7 @@
 import { authModel } from "../models/auth-model";
 import UserSchema from "../schemas/user";
 
-async function singup(auth: authModel): Promise<Object> {
+async function sigup(auth: authModel): Promise<Object> {
   const createAuth = await UserSchema.create(auth);
   return createAuth;
 }
@@ -15,6 +15,6 @@ async function findEmail(email: String): Promise<boolean> {
 }
 
 export default {
-  singup,
+  sigup,
   findEmail,
 };

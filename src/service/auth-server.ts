@@ -3,7 +3,7 @@ import { authModel } from "../models/auth-model";
 import authRepository from "../repositories/auth-repository";
 import { badRquest, created } from "./http-response/http-response";
 
-async function singup(auth: authModel) {
+async function sigup(auth: authModel) {
   if (Object.keys(auth).length === 0) {
     throw new Error("Required params");
   }
@@ -16,7 +16,7 @@ async function singup(auth: authModel) {
 
   const hashPassword = bcrypt.hashSync(auth.password, 10);
 
-  const createAuth = await authRepository.singup({
+  const createAuth = await authRepository.sigup({
     ...auth,
     password: hashPassword,
   });
@@ -24,4 +24,4 @@ async function singup(auth: authModel) {
   return created(createAuth);
 }
 
-export default { singup };
+export default { sigup };

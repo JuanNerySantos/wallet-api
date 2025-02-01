@@ -3,4 +3,4 @@ import authController from "../controllers/auth-controller";
 
 export const authRouter = Router();
 
-authRouter.post("/singup", authController.singup);
+authRouter.post("/sigup", authController.sigup);
