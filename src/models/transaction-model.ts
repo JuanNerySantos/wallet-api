@@ -1,6 +1,6 @@
 export interface transactionModel {
   value: number;
   description: string;
-  //   id: string;
+  userId: string;
   type: string;
 }
