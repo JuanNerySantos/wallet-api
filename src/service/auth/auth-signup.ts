@@ -11,8 +11,6 @@ export async function authSignupService(auth: authModel) {
 
   const authExist = await findAuthRepository(auth.email);
 
-  console.log(Object.keys(authExist).length);
-
   if (Object.keys(authExist).length !== 0) {
     return badRquest({ message: "Email already exists!" });
   }
