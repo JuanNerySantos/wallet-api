@@ -28,8 +28,6 @@ export async function authMiddlewares(req: Request, res: Response, next: NextFun
     secret,
     async (err: jwt.VerifyErrors | null, decode: JwtPayload | string | undefined): Promise<void> => {
       if (err) {
-        console.log("4");
-
         res.status(401).send({ message: "Invalid Token" });
       }
 
