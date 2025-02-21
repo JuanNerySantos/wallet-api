@@ -2,7 +2,7 @@ import { httpResponseModel } from "../../models/http-response";
 import { transactionModel } from "../../models/transaction-model";
 import { findByIdRepository } from "../../repositories/auth/find-by-id";
 import { createTransactionRepository } from "../../repositories/transaction/create-transaction";
-import { badRquest, notFound, ok } from "../http-response/http-response";
+import { badRquest, created, notFound } from "../http-response/http-response";
 
 export async function createTransactionService(transaction: transactionModel, id: string): Promise<httpResponseModel> {
   if (!id) {
@@ -21,5 +21,5 @@ export async function createTransactionService(transaction: transactionModel, id
 
   const createTransaction = await createTransactionRepository({ ...transaction, userId: id });
 
-  return ok(createTransaction);
+  return created(createTransaction);
 }
