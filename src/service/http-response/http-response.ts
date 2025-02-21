@@ -27,3 +27,10 @@ export const ok = (message: object): httpResponseModel => {
     body: message,
   };
 };
+
+export const notFound = (message: object): httpResponseModel => {
+  return {
+    statusCode: 404,
+    body: message,
+  };
+};
