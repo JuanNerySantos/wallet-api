@@ -5,5 +5,7 @@ import { authMiddlewares } from "../middlewares/auth-middlewares";
 
 export const transactionRouter = Router();
 
-transactionRouter.post("/transaction", authMiddlewares, createTransactionController);
-transactionRouter.get("/transaction", authMiddlewares, findTransactionController);
+transactionRouter.use(authMiddlewares);
+
+transactionRouter.post("/transaction", createTransactionController);
+transactionRouter.get("/transaction", findTransactionController);
