@@ -6,6 +6,10 @@ import { tokenRepository } from "../../repositories/auth/token";
 import { badRquest, ok, unauthorized } from "../http-response/http-response";
 
 export async function authSigninService(params: signinModel): Promise<httpResponseModel> {
+  const hhhh = ["juan", "nery"];
+  if (!["email", "password"].every(key => Object.keys(params).includes(key))) {
+    console.log("estamos chegando");
+  }
   if (!params.email) {
     return badRquest({ message: "password and email is requaired !" });
   }
