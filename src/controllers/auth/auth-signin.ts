@@ -14,8 +14,8 @@ export async function authSigninController(req: Request, res: Response): Promise
     res.status(statusCode).send(body);
     return;
   } catch (error) {
-    const existError = res.locals.error;
     if (error instanceof ErrorMiddlewares) {
+      const existError = res.locals.error;
       res.status(existError.statusCode).send(existError.message);
       return;
     }
