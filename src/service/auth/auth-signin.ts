@@ -3,10 +3,14 @@ import { httpResponseModel } from "../../models/http-response";
 import { signinModel } from "../../models/signin-model";
 import { findAuthRepository } from "../../repositories/auth/find-auth";
 import { tokenRepository } from "../../repositories/auth/token";
-import { badRquest, ok, unauthorized } from "../http-response/http-response";
+import { badRquest, notFound, ok, unauthorized } from "../http-response/http-response";
 
 export async function authSigninService(params: signinModel): Promise<httpResponseModel> {
   const authExist = await findAuthRepository(params.email);
+
+  if (Object.keys(authExist).length === 0) {
+    return notFound({ message: "User not found" });
+  }
 
   if ("password" in authExist) {
     const passwordEncrypted = authExist.password;
