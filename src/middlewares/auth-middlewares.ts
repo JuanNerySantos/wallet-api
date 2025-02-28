@@ -51,13 +51,15 @@ export async function authMiddlewares(req: Request, res: Response, next: NextFun
         res.locals.error = httpError;
       }
 
-      if (!decode) {
+      if (decode === undefined) {
         const httpError = {
           statusCode: 401,
           message: "Invalid Token",
         };
-
         res.locals.error = httpError;
+
+        next();
+        return;
       }
       const id = (decode as JwtPayload).id as string;
 
@@ -70,9 +72,10 @@ export async function authMiddlewares(req: Request, res: Response, next: NextFun
         };
 
         res.locals.error = httpError;
+        next();
       }
 
-      res.locals.middlewares = auth;
+      res.locals.auth = auth;
       next();
     }
   );
