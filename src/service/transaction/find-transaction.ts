@@ -1,6 +1,6 @@
 import { httpResponseModel } from "../../models/http-response";
 import { findByIdRepository } from "../../repositories/auth/find-by-id";
-import { findTransactionRepository } from "../../repositories/transaction/find-transaction";
+import { findAllTransactionRepository } from "../../repositories/transaction/find-all-transaction";
 import { badRquest, notFound, ok } from "../http-response/http-response";
 
 export async function findTransactionService(id: string): Promise<httpResponseModel> {
@@ -14,7 +14,7 @@ export async function findTransactionService(id: string): Promise<httpResponseMo
     return notFound({ message: "User not exist" });
   }
 
-  const transaction = await findTransactionRepository(id);
+  const transaction = await findAllTransactionRepository(id);
 
   return ok(transaction);
 }
