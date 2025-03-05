@@ -23,4 +23,33 @@ Ambiente pronto com o comando:
   
 O servidor estara ativo na porta escolhida.
 
+## Para fazer requisições as rotas de GET /me , GET /transaction, POST /transaction precisam que seja enviado um header no modelo:
+- key:value
+- Authorization : Bearer (E o código jwt criado quando o usuario faz o signin)
 
+  
+
+## Estrutura da requisições 
+
+### Auth
+- Sigup
+   - {<br>
+    "name": "valor",<br>
+    "email": "valor",<br>
+    "password": "valor"<br>
+} 
+
+- Signin
+  - {<br>
+    "email": "valor",<br>
+    "password": "valor"<br>
+}
+
+
+### Transactions
+
+- {<br>
+    "value": "valor",<br>
+    "description": "valor",<br>
+    "type": "valor",<br>
+}
