@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { deleteTransactionController } from "../controllers/transaction/delete-transaction";
 import { findTransactionController } from "../controllers/transaction/find-transaction";
 import { createTransactionController } from "../controllers/transaction/transaction-create";
 import { updateTransactionController } from "../controllers/transaction/update-transaction";
@@ -22,5 +23,7 @@ transactionRouter.patch(
   validationSchemaMiddlewares(updateTransactionSchema),
   updateTransactionController
 );
+
+transactionRouter.delete("/deleteTransaction/:id", deleteTransactionController);
 
 transactionRouter.get("/transaction", findTransactionController);
